@@ -126,9 +126,11 @@ class BluetoothConnectionDeviceListener(
     @SuppressWarnings("MissingPermission")
     private fun updateConnectionState() {
         supportedProfiles.forEach {
-            if (bluetoothAdapter.getProfileConnectionState(it) == BluetoothAdapter.STATE_CONNECTED) {
+            val state = bluetoothAdapter.getProfileConnectionState(it)
+            Timber.v("profile: $it state: $state")
+            if (state == BluetoothAdapter.STATE_CONNECTED) {
                 _status.value = ConnectionStatus.CONNECTED
-                return@forEach
+                return
             }
         }
         _status.value = ConnectionStatus.DISCONNECTED
