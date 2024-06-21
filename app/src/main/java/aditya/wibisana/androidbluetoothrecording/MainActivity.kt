@@ -16,10 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.flow.StateFlow
+import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+            Timber.v("Timber has been planted")
+        }
+
         enableEdgeToEdge()
 
         val bluetoothPermission = BluetoothPermission()
