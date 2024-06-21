@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android Bluetooth Recording"
 include(":app")
+include(":app:bluetoothrecorder")
